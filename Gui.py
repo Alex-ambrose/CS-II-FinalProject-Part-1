@@ -63,7 +63,18 @@ class MainWindow(QWidget):
         except ValueError:
             QMessageBox.critical(self, "Invalid Input", "Please enter a number from 1 to 4.")
             return
-
+        '''
+        when I was making it so the the submitted button shows when you hit grade student button it was causing my window to crash.
+        I couldn't figure out why so I asked ChatGpt to help me debug.
+        It had me add the try, execpt logic to the grade student function
+        except Exception as e:
+            QMessageBox.critical(self, "Unexpected Error", f"An error occurred: {str(e)}")
+        after adding that I was getting the error wrapped c/c++ object of type Qlabel has been deleted
+        I went back and forth with ChatGPT until i realized the label was getting deleted by my code that was removing
+        the next button i figured this out by making the submitted label start of not being hidden and when I hit the next
+        button it would remove the label. chatPGT helped me rewrite the way I removed the next button and added the input
+        fields
+        '''
         for label, input_field in self.score_inputs:
             self.layout.removeWidget(label)
             label.deleteLater()
